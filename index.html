@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Plataforma completa de práctica para el examen PMP del PMI 2026 — preguntas, simulacros, glosario y ejercicios de Python" />
+  <title>PMP Practice Lab — PMI 2026</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/themes.css" />
+  <script src="js/vendor/chart.umd.min.js" defer></script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>" />
+</head>
+<body>
+  <!-- =================== HEADER =================== -->
+  <header class="topbar">
+    <div class="topbar__left">
+      <a href="#home" class="brand" data-nav="home">
+        <span class="brand__logo">🎯</span>
+        <span class="brand__name">PMP Practice Lab</span>
+        <span class="brand__badge">PMI 2026</span>
+      </a>
+    </div>
+    <nav class="topbar__nav" id="mainNav">
+      <a href="#home" data-nav="home" class="nav-link active">
+        <span class="nav-ico">🏠</span><span class="nav-label" data-i18n="nav.home">Inicio</span>
+      </a>
+      <a href="#theory" data-nav="theory" class="nav-link">
+        <span class="nav-ico">📖</span><span class="nav-label" data-i18n="nav.theory">Teoría</span>
+      </a>
+      <a href="#practice" data-nav="practice" class="nav-link">
+        <span class="nav-ico">✍️</span><span class="nav-label" data-i18n="nav.practice">Practicar</span>
+      </a>
+      <a href="#exam" data-nav="exam" class="nav-link">
+        <span class="nav-ico">🎓</span><span class="nav-label" data-i18n="nav.exam">Simulacro</span>
+      </a>
+      <a href="#python" data-nav="python" class="nav-link">
+        <span class="nav-ico">🐍</span><span class="nav-label" data-i18n="nav.python">Python</span>
+      </a>
+      <a href="#glossary" data-nav="glossary" class="nav-link">
+        <span class="nav-ico">📚</span><span class="nav-label" data-i18n="nav.glossary">Glosario</span>
+      </a>
+      <a href="#stats" data-nav="stats" class="nav-link">
+        <span class="nav-ico">📊</span><span class="nav-label" data-i18n="nav.stats">Progreso</span>
+      </a>
+    </nav>
+    <div class="topbar__right">
+      <div class="stats-chip" title="Racha"><span>🔥</span><b id="statStreak">0</b></div>
+      <div class="stats-chip" title="Puntos XP"><span>⭐</span><b id="statXP">0</b></div>
+      <select id="langSwitch" class="lang-switch" title="Idioma / Language">
+        <option value="es">🇪🇸 ES</option>
+        <option value="en">🇺🇸 EN</option>
+      </select>
+      <button id="themeToggle" class="theme-toggle" title="Modo oscuro">🌙</button>
+    </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menú">☰</button>
+  </header>
+
+  <!-- =================== MAIN =================== -->
+  <main id="mainContent">
+    <!-- ===== HOME ===== -->
+    <section class="page" id="page-home">
+      <div class="hero">
+        <div class="hero__content">
+          <h1 class="hero__title">
+            <span data-i18n="home.title">Aprueba el PMP del PMI 2026</span>
+            <span class="hero__title-accent"> al primer intento</span>
+          </h1>
+          <p class="hero__sub" data-i18n="home.subtitle">
+            Plataforma bilingüe ES/EN con +200 preguntas, un simulacro completo de 180 preguntas (240 min),
+            todos los tipos de pregunta oficiales (case study, drag-and-drop, multiple response, etc.) y
+            ejercicios de Python para dominar EVM, CPM/PERT y riesgo.
+          </p>
+          <div class="hero__cta">
+            <button class="btn btn--primary btn--lg" data-go="exam">
+              <span>🎓</span> <span data-i18n="home.ctaExam">Iniciar simulacro</span>
+            </button>
+            <button class="btn btn--ghost btn--lg" data-go="practice">
+              <span>✍️</span> <span data-i18n="home.ctaPractice">Practicar por dominio</span>
+            </button>
+            <button class="btn btn--ghost btn--lg" data-go="theory">
+              <span>📖</span> <span data-i18n="home.ctaTheory">Estudiar teoría</span>
+            </button>
+          </div>
+          <div class="hero__highlights">
+            <div class="hl"><b id="hlQuestions">0</b><span data-i18n="home.hlQ">Preguntas</span></div>
+            <div class="hl"><b id="hlDomains">8</b><span data-i18n="home.hlD">Performance Domains</span></div>
+            <div class="hl"><b id="hlPython">20+</b><span data-i18n="home.hlPy">Ejercicios de Python</span></div>
+            <div class="hl"><b>240<span class="hl__min">min</span></b><span data-i18n="home.hlE">Simulacro oficial</span></div>
+          </div>
+        </div>
+        <div class="hero__art" aria-hidden="true">
+          <div class="hero__art-circle"></div>
+          <div class="hero__art-bars">
+            <div style="--h:60%"></div><div style="--h:80%"></div>
+            <div style="--h:45%"></div><div style="--h:90%"></div>
+            <div style="--h:70%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid--3 mt-3">
+        <div class="card feature">
+          <div class="feature__icon">📋</div>
+          <h3 data-i18n="home.f1Title">Bilingüe ES/EN</h3>
+          <p data-i18n="home.f1Desc">Cambia de idioma al instante. Aprende el vocabulario real del examen en inglés.</p>
+        </div>
+        <div class="card feature">
+          <div class="feature__icon">🎯</div>
+          <h3 data-i18n="home.f2Title">Todos los tipos de pregunta</h3>
+          <p data-i18n="home.f2Desc">MCQ, multiple-response, matching, drag-and-drop, point-and-click, pull-down, case study, graphic-based.</p>
+        </div>
+        <div class="card feature">
+          <div class="feature__icon">🐍</div>
+          <h3 data-i18n="home.f3Title">Ejercicios de Python</h3>
+          <p data-i18n="home.f3Desc">Practica Earned Value, CPM/PERT, análisis de riesgo y más ejecutando Python en el navegador.</p>
+        </div>
+        <div class="card feature">
+          <div class="feature__icon">📊</div>
+          <h3 data-i18n="home.f4Title">Progreso y racha</h3>
+          <p data-i18n="home.f4Desc">Sistema XP, racha diaria, dashboard por dominio. Tu avance se guarda localmente.</p>
+        </div>
+        <div class="card feature">
+          <div class="feature__icon">🌗</div>
+          <h3 data-i18n="home.f5Title">Modo claro / oscuro</h3>
+          <p data-i18n="home.f5Desc">Estudia de día o de noche con un tema que cuida tu vista.</p>
+        </div>
+        <div class="card feature">
+          <div class="feature__icon">📚</div>
+          <h3 data-i18n="home.f6Title">Glosario + Teoría</h3>
+          <p data-i18n="home.f6Desc">Diccionario completo de términos PMP en ambos idiomas. Resumen por dominio y principio.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== THEORY ===== -->
+    <section class="page" id="page-theory" hidden>
+      <header class="page__head">
+        <h1 data-i18n="theory.title">📖 Teoría y estudio</h1>
+        <p data-i18n="theory.subtitle">Resúmenes basados en PMBOK 8.ª edición y la estructura oficial del examen 2026.</p>
+      </header>
+      <div class="theory-layout">
+        <aside class="theory-aside">
+          <input type="search" id="theorySearch" class="search" data-i18n-placeholder="theory.search" placeholder="Buscar tema…" />
+          <nav id="theoryNav" class="theory-nav"></nav>
+        </aside>
+        <article id="theoryContent" class="theory-content"></article>
+      </div>
+    </section>
+
+    <!-- ===== PRACTICE ===== -->
+    <section class="page" id="page-practice" hidden>
+      <header class="page__head">
+        <h1 data-i18n="practice.title">✍️ Practicar por dominio</h1>
+        <p data-i18n="practice.subtitle">Filtra por dominio, tipo de pregunta, idioma y dificultad. Practica con feedback inmediato.</p>
+      </header>
+      <div id="practiceSetup" class="practice-setup">
+        <div class="grid grid--2">
+          <div class="card setup-card">
+            <h3>1. <span data-i18n="practice.domain">Dominio del examen (ECO 2026)</span></h3>
+            <div class="chips" id="domainChips"></div>
+          </div>
+          <div class="card setup-card">
+            <h3>2. <span data-i18n="practice.type">Tipo de pregunta</span></h3>
+            <div class="chips" id="typeChips"></div>
+          </div>
+          <div class="card setup-card">
+            <h3>3. <span data-i18n="practice.difficulty">Dificultad</span></h3>
+            <div class="chips" id="diffChips"></div>
+          </div>
+          <div class="card setup-card">
+            <h3>4. <span data-i18n="practice.size">Cantidad</span></h3>
+            <div class="qty-row">
+              <input type="range" id="qtyRange" min="5" max="50" value="10" />
+              <span class="qty-value"><b id="qtyValue">10</b> <span data-i18n="common.questionsLower">preguntas</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="setup-actions">
+          <button id="startPracticeBtn" class="btn btn--primary btn--lg">
+            🚀 <span data-i18n="practice.start">Comenzar práctica</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="practiceRunner" class="runner" hidden></div>
+      <div id="practiceResult" class="result" hidden></div>
+    </section>
+
+    <!-- ===== EXAM SIMULATOR ===== -->
+    <section class="page" id="page-exam" hidden>
+      <header class="page__head">
+        <h1 data-i18n="exam.title">🎓 Simulacro oficial PMP 2026</h1>
+        <p data-i18n="exam.subtitle">180 preguntas (170 puntuables y 10 de prueba) · 240 min · 2 descansos de 10 min.</p>
+      </header>
+      <div id="examLobby" class="exam-lobby">
+        <div class="grid grid--3">
+          <div class="card stat-card"><div class="stat-card__num">180</div><div class="stat-card__label" data-i18n="exam.questions">Preguntas</div></div>
+          <div class="card stat-card"><div class="stat-card__num">240<span class="stat-card__unit">min</span></div><div class="stat-card__label" data-i18n="exam.time">Tiempo total</div></div>
+          <div class="card stat-card"><div class="stat-card__num">2</div><div class="stat-card__label" data-i18n="exam.breaks">Descansos de 10 min</div></div>
+        </div>
+        <div class="card exam-info mt-3">
+          <h3 data-i18n="exam.weightings">Distribución de dominios (PMI 2026)</h3>
+          <div class="domain-bars" id="examDomainBars"></div>
+          <p class="mt-2" data-i18n="exam.pretest">Las 10 preguntas de prueba se ubican al azar y no cuentan para el puntaje.</p>
+          <div class="exam-warning mt-2">
+            <strong>⚠️ <span data-i18n="exam.warnTitle">Aviso</span>:</strong>
+            <span data-i18n="exam.warnBody">Este simulacro replica el formato, pero NO predice si aprobarás. Usa los resultados para detectar áreas débiles y repasar con teoría + práctica dirigida.</span>
+          </div>
+        </div>
+        <div class="exam-actions mt-3">
+          <button id="startExamBtn" class="btn btn--primary btn--xl">
+            <span>🎯</span> <span data-i18n="exam.start">Comenzar simulacro</span>
+          </button>
+          <button id="quickExamBtn" class="btn btn--ghost btn--xl" title="Simulacro rápido de 20 preguntas / 30 min">
+            ⚡ <span data-i18n="exam.quick">Simulacro rápido (20q / 30min)</span>
+          </button>
+        </div>
+      </div>
+      <div id="examRunner" class="runner" hidden></div>
+      <div id="examResult" class="result" hidden></div>
+    </section>
+
+    <!-- ===== PYTHON ===== -->
+    <section class="page" id="page-python" hidden>
+      <header class="page__head">
+        <h1 data-i18n="python.title">🐍 Ejercicios de Python</h1>
+        <p data-i18n="python.subtitle">Practica Earned Value, CPM/PERT, riesgo y más con un entorno real de Python que se ejecuta en el navegador (Pyodide).</p>
+      </header>
+      <div id="pyList" class="py-list"></div>
+    </section>
+
+    <!-- ===== GLOSSARY ===== -->
+    <section class="page" id="page-glossary" hidden>
+      <header class="page__head">
+        <h1 data-i18n="glossary.title">📚 Glosario PMP</h1>
+        <p data-i18n="glossary.subtitle">Términos clave del PMBOK 8.ª edición en español e inglés. Busca por palabra.</p>
+      </header>
+      <div class="glossary-controls">
+        <input type="search" id="glossSearch" class="search" placeholder="Buscar término…" />
+        <select id="glossFilter" class="select">
+          <option value="all" data-i18n="glossary.all">Todos</option>
+          <option value="standard" data-i18n="glossary.standard">The Standard</option>
+          <option value="principles" data-i18n="glossary.principles">Principios</option>
+          <option value="domains" data-i18n="glossary.domains">Performance Domains</option>
+          <option value="processes" data-i18n="glossary.processes">Procesos</option>
+          <option value="evm" data-i18n="glossary.evm">Earned Value</option>
+        </select>
+      </div>
+      <div id="glossList" class="gloss-list"></div>
+    </section>
+
+    <!-- ===== STATS ===== -->
+    <section class="page" id="page-stats" hidden>
+      <header class="page__head">
+        <h1 data-i18n="stats.title">📊 Tu progreso</h1>
+        <p data-i18n="stats.subtitle">Estadísticas detalladas de tu preparación.</p>
+      </header>
+      <div class="grid grid--4 mb-3">
+        <div class="card stat-card big"><div class="stat-card__num" id="bigXP">0</div><div class="stat-card__label">⭐ <span data-i18n="stats.xp">Puntos XP</span></div></div>
+        <div class="card stat-card big"><div class="stat-card__num" id="bigStreak">0</div><div class="stat-card__label">🔥 <span data-i18n="stats.streak">Racha (días)</span></div></div>
+        <div class="card stat-card big"><div class="stat-card__num" id="bigAnswered">0</div><div class="stat-card__label">✅ <span data-i18n="stats.answered">Preguntas respondidas</span></div></div>
+        <div class="card stat-card big"><div class="stat-card__num" id="bigAccuracy">0%</div><div class="stat-card__label">🎯 <span data-i18n="stats.accuracy">Precisión</span></div></div>
+      </div>
+      <div class="grid grid--2">
+        <div class="card chart-card">
+          <h3 data-i18n="stats.byDomain">Aciertos por dominio</h3>
+          <canvas id="chartByDomain" height="200"></canvas>
+        </div>
+        <div class="card chart-card">
+          <h3 data-i18n="stats.byType">Aciertos por tipo de pregunta</h3>
+          <canvas id="chartByType" height="200"></canvas>
+        </div>
+      </div>
+      <div class="card mt-3">
+        <h3 data-i18n="stats.calendar">Calendario de actividad</h3>
+        <div id="activityCalendar" class="activity-cal"></div>
+      </div>
+      <div class="card mt-3">
+        <h3 data-i18n="stats.actions">Acciones</h3>
+        <div class="action-row">
+          <button id="exportDataBtn" class="btn">📤 <span data-i18n="stats.export">Exportar progreso (JSON)</span></button>
+          <label class="btn">
+            📥 <span data-i18n="stats.import">Importar progreso</span>
+            <input type="file" id="importDataInput" accept="application/json" hidden />
+          </label>
+          <button id="resetDataBtn" class="btn btn--danger">🗑️ <span data-i18n="stats.reset">Borrar todo el progreso</span></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =================== FOOTER =================== -->
+  <footer class="footer">
+    <div>
+      <span>🎯 PMP Practice Lab</span> ·
+      <span data-i18n="footer.basedOn">Basado en la 8.ª edición de PMBOK® Guide y en el Examination Content Outline del PMI 2026.</span>
+    </div>
+    <div data-i18n="footer.usage">Uso educativo. Las marcas pertenecen a sus titulares.</div>
+  </footer>
+
+  <!-- Toast container -->
+  <div id="toast" class="toast" hidden></div>
+
+  <!-- Confirmation modal -->
+  <div id="modal" class="modal" hidden>
+    <div class="modal__box">
+      <h3 id="modalTitle"></h3>
+      <p id="modalBody"></p>
+      <div class="modal__actions">
+        <button id="modalCancel" class="btn">Cancelar</button>
+        <button id="modalOk" class="btn btn--primary">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SCRIPTS =================== -->
+  <script src="js/storage.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/data-glossary.js"></script>
+  <script src="js/data-theory.js"></script>
+  <script src="js/data-questions.js"></script>
+  <script src="js/data-questions-2.js"></script>
+  <script src="js/data-questions-3.js"></script>
+  <script src="js/data-python.js"></script>
+  <script src="js/theory-gloss.js"></script>
+  <script src="js/stats.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/practice.js"></script>
+  <script src="js/simulator.js"></script>
+  <script src="js/python.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

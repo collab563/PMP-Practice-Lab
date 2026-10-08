@@ -1,0 +1,94 @@
+/* ==========================================================
+   PMP Practice Lab — Component-level styles
+   ========================================================== */
+
+/* ===== Print-friendly exam UI ===== */
+@media print {
+  .topbar, .footer, .runner__actions, .runner__timer, .exam-actions { display: none !important; }
+  .runner, .result { box-shadow: none; border-color: #999; }
+  body { background: white; color: black; }
+}
+
+/* ===== Code blocks in theory ===== */
+.theory-content pre {
+  background: #0E1116;
+  color: #DDE6F0;
+  padding: 14px 16px;
+  border-radius: 8px;
+  font-size: .88rem;
+  overflow-x: auto;
+  margin: 12px 0;
+}
+.theory-content pre code { color: inherit; }
+
+/* ===== Special callouts in theory ===== */
+.callout {
+  border-left: 4px solid var(--accent);
+  background: var(--bg-soft);
+  padding: 10px 14px;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+.callout--warning { border-color: var(--pmi-gold); background: rgba(240,178,55,.10); }
+.callout--danger  { border-color: var(--danger); background: rgba(215,38,61,.10); }
+.callout--success { border-color: var(--success); background: rgba(27,158,119,.10); }
+.callout h4 { margin-top: 0; }
+
+/* ===== Tables in theory ===== */
+.theory-content table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: .9rem; }
+.theory-content th, .theory-content td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; }
+.theory-content th { background: var(--bg-soft); font-weight: 700; }
+.theory-content tr:nth-child(even) td { background: var(--bg-soft); }
+
+/* ===== Tag pills ===== */
+.tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: .72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .04em;
+  padding: 2px 8px; border-radius: 999px;
+  background: var(--bg-soft); color: var(--fg-soft);
+  border: 1px solid var(--border);
+}
+.tag--people { background: #4FB3D9; color: white; border-color: transparent; }
+.tag--process { background: #2E86AB; color: white; border-color: transparent; }
+.tag--business { background: #F0B237; color: var(--pmi-navy); border-color: transparent; }
+.tag--easy { background: rgba(27,158,119,.15); color: var(--success); border-color: var(--success); }
+.tag--medium { background: rgba(240,178,55,.15); color: var(--pmi-gold-2); border-color: var(--pmi-gold); }
+.tag--hard { background: rgba(215,38,61,.15); color: var(--danger); border-color: var(--danger); }
+
+/* ===== Spinner ===== */
+.spinner { width: 32px; height: 32px; border: 3px solid var(--bg-soft); border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; margin: 14px auto; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ===== Question bank preview (in theory) ===== */
+.qb-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.qb-table th, .qb-table td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+.qb-table th { color: var(--fg-soft); font-weight: 600; }
+
+/* ===== Scrollbars ===== */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: var(--fg-mute); }
+
+/* ===== Focus outline ===== */
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ===== Confetti celebration (mock) ===== */
+.celebrate {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 150;
+  overflow: hidden;
+}
+.celebrate .conf {
+  position: absolute; width: 8px; height: 14px;
+  border-radius: 2px;
+  animation: fall 1.6s linear forwards;
+}
+@keyframes fall {
+  to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}

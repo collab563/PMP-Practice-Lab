@@ -1,0 +1,103 @@
+/* ==========================================================
+   PMP Practice Lab — Glossary
+   Bilingual dictionary of key PMP terms
+   ========================================================== */
+(function (global) {
+  'use strict';
+
+  const TERMS = [
+    // The Standard
+    {term: {es: 'Proyecto', en: 'Project'}, category: 'standard',
+     def: {es: 'Esfuerzo temporal para crear un producto, servicio o resultado único.', en: 'Temporary effort to create a unique product, service, or result.'}},
+    {term: {es: 'Gestión de Proyectos', en: 'Project Management'}, category: 'standard',
+     def: {es: 'Aplicación de conocimientos, habilidades, herramientas y técnicas a actividades del proyecto para cumplir requisitos.', en: 'Application of knowledge, skills, tools, and techniques to project activities to meet requirements.'}},
+    {term: {es: 'Portafolio', en: 'Portfolio'}, category: 'standard',
+     def: {es: 'Colección de proyectos, programas y operaciones gestionados como grupo para alcanzar objetivos estratégicos.', en: 'Collection of projects, programs, and operations managed as a group to achieve strategic objectives.'}},
+    {term: {es: 'Programa', en: 'Program'}, category: 'standard',
+     def: {es: 'Grupo de proyectos relacionados gestionados de forma coordinada para obtener beneficios no disponibles gestionándolos individualmente.', en: 'Group of related projects managed in a coordinated way to obtain benefits not available from managing them individually.'}},
+    {term: {es: 'Valor', en: 'Value'}, category: 'standard',
+     def: {es: 'Exceso de beneficios financieros y no financieros sobre la inversión, obtenido al alcanzar objetivos.', en: 'Excess of financial and nonfinancial benefits over investment gained from achieving objectives.'}},
+    {term: {es: 'Sistema de Entrega de Valor', en: 'Value Delivery System'}, category: 'standard',
+     def: {es: 'Colección de actividades estratégicas para construir, sostener o avanzar la organización.', en: 'Collection of strategic activities to build, sustain, or advance the organization.'}},
+    {term: {es: 'Beneficio', en: 'Benefit'}, category: 'standard',
+     def: {es: 'Efecto positivo realizado por la organización. Puede ser tangible o intangible.', en: 'Positive effect realized by the organization. Can be tangible or intangible.'}},
+    {term: {es: 'Sponsor', en: 'Sponsor'}, category: 'standard',
+     def: {es: 'Persona que proporciona recursos y apoyo al proyecto; accountable del business case.', en: 'Person who provides resources and support to the project; accountable for the business case.'}},
+    {term: {es: 'Project Charter', en: 'Project Charter'}, category: 'standard',
+     def: {es: 'Documento emitido por el sponsor que autoriza formalmente la existencia del proyecto y da autoridad al PM.', en: 'Document issued by the sponsor that formally authorizes the existence of the project and gives authority to the PM.'}},
+    {term: {es: 'Business Case', en: 'Business Case'}, category: 'standard',
+     def: {es: 'Documento que justifica la inversión en el proyecto. Incluye el valor esperado y la alineación estratégica.', en: 'Document that justifies the investment in the project. Includes expected value and strategic alignment.'}},
+    {term: {es: 'Stakeholder', en: 'Stakeholder'}, category: 'standard',
+     def: {es: 'Persona, grupo u organización que puede afectar, ser afectado o percibirse afectado por el proyecto.', en: 'Person, group, or organization that may affect, be affected by, or perceive itself to be affected by the project.'}},
+    {term: {es: 'OPAs (Activos de Procesos Organizacionales)', en: 'OPAs (Organizational Process Assets)'}, category: 'standard',
+     def: {es: 'Planes, procesos, políticas, procedimientos, bases de conocimiento específicos de la organización.', en: 'Plans, processes, policies, procedures, knowledge bases specific to the organization.'}},
+    {term: {es: 'EEFs (Factores Ambientales de la Empresa)', en: 'EEFs (Enterprise Environmental Factors)'}, category: 'standard',
+     def: {es: 'Condiciones internas y externas que influyen en el proyecto pero no son controladas por el equipo.', en: 'Internal and external conditions that influence the project but are not controlled by the team.'}},
+
+    // Principles
+    {term: {es: 'Visión Holística', en: 'Holistic View'}, category: 'principles',
+     def: {es: 'Considerar el sistema completo y sus interconexiones, no solo partes aisladas.', en: 'Consider the whole system and its interconnections, not just isolated parts.'}},
+    {term: {es: 'Enfoque en el Valor', en: 'Focus on Value'}, category: 'principles',
+     def: {es: 'Mantener el valor como el factor principal en todas las decisiones.', en: 'Keep value as the main factor in all decisions.'}},
+    {term: {es: 'Embeber Calidad', en: 'Embed Quality'}, category: 'principles',
+     def: {es: 'Integrar la calidad en procesos y entregables desde el inicio.', en: 'Integrate quality into processes and deliverables from the start.'}},
+    {term: {es: 'Líder Responsable', en: 'Accountable Leader'}, category: 'principles',
+     def: {es: 'Los líderes aceptan responsabilidad por sus acciones y las del equipo.', en: 'Leaders accept responsibility for their actions and the team\'s.'}},
+    {term: {es: 'Sostenibilidad Integrada', en: 'Integrated Sustainability'}, category: 'principles',
+     def: {es: 'Considerar el impacto ambiental, social y económico en todas las decisiones del proyecto.', en: 'Consider environmental, social, and economic impact in all project decisions.'}},
+    {term: {es: 'Cultura Empoderada', en: 'Empowered Culture'}, category: 'principles',
+     def: {es: 'Crear una cultura donde los miembros del equipo se sienten seguros para tomar decisiones.', en: 'Create a culture where team members feel safe to make decisions.'}},
+
+    // Domains
+    {term: {es: 'Governance Performance Domain', en: 'Governance Performance Domain'}, category: 'domains',
+     def: {es: 'Dominio que establece las políticas, estructuras y procesos para guiar, dirigir y controlar el proyecto.', en: 'Domain that establishes policies, structures, and processes to guide, direct, and control the project.'}},
+    {term: {es: 'Scope Performance Domain', en: 'Scope Performance Domain'}, category: 'domains',
+     def: {es: 'Dominio que asegura que el proyecto incluya todo el trabajo requerido y solo ese trabajo.', en: 'Domain that ensures the project includes all the work required and only that work.'}},
+    {term: {es: 'Schedule Performance Domain', en: 'Schedule Performance Domain'}, category: 'domains',
+     def: {es: 'Dominio que gestiona la finalización del proyecto a tiempo.', en: 'Domain that manages project completion on time.'}},
+    {term: {es: 'Finance Performance Domain', en: 'Finance Performance Domain'}, category: 'domains',
+     def: {es: 'Dominio que gestiona el presupuesto, costos, financiamiento y retorno del proyecto.', en: 'Domain that manages project budget, costs, funding, and return.'}},
+    {term: {es: 'Stakeholders Performance Domain', en: 'Stakeholders Performance Domain'}, category: 'domains',
+     def: {es: 'Dominio que gestiona las relaciones con personas, grupos u organizaciones afectados por el proyecto.', en: 'Domain that manages relationships with people, groups, or organizations affected by the project.'}},
+    {term: {es: 'Resources Performance Domain', en: 'Resources Performance Domain'}, category: 'domains',
+     def: {es: 'Dominio que gestiona los recursos humanos, físicos y materiales del proyecto.', en: 'Domain that manages the project\'s human, physical, and material resources.'}},
+    {term: {es: 'Risk Performance Domain', en: 'Risk Performance Domain'}, category: 'domains',
+     def: {es: 'Dominio que identifica, analiza, planifica respuestas, implementa y monitorea los riesgos del proyecto.', en: 'Domain that identifies, analyzes, plans responses, implements, and monitors project risks.'}},
+
+    // Processes
+    {term: {es: 'Planificar la Gestión', en: 'Plan Management'}, category: 'processes',
+     def: {es: 'Establecer políticas, procedimientos y documentos para planificar, ejecutar y controlar el proyecto.', en: 'Establish policies, procedures, and documents to plan, execute, and control the project.'}},
+    {term: {es: 'Integrated Change Control', en: 'Integrated Change Control'}, category: 'processes',
+     def: {es: 'Proceso de revisar, aprobar y gestionar cambios a lo largo del proyecto.', en: 'Process of reviewing, approving, and managing changes throughout the project.'}},
+    {term: {es: 'Earned Value (EV)', en: 'Earned Value (EV)'}, category: 'evm',
+     def: {es: 'Medida del trabajo realmente completado, en términos de presupuesto.', en: 'Measure of work actually completed, in budget terms.'}},
+    {term: {es: 'Planned Value (PV)', en: 'Planned Value (PV)'}, category: 'evm',
+     def: {es: 'Valor del trabajo planificado a una fecha específica.', en: 'Value of scheduled work at a specific date.'}},
+    {term: {es: 'Actual Cost (AC)', en: 'Actual Cost (AC)'}, category: 'evm',
+     def: {es: 'Costo real del trabajo completado en un periodo.', en: 'Actual cost of work completed in a period.'}},
+    {term: {es: 'Budget at Completion (BAC)', en: 'Budget at Completion (BAC)'}, category: 'evm',
+     def: {es: 'Presupuesto total aprobado para el proyecto.', en: 'Total approved budget for the project.'}},
+    {term: {es: 'Estimate at Completion (EAC)', en: 'Estimate at Completion (EAC)'}, category: 'evm',
+     def: {es: 'Costo total esperado al finalizar el proyecto.', en: 'Total expected cost at the end of the project.'}},
+    {term: {es: 'Cost Performance Index (CPI)', en: 'Cost Performance Index (CPI)'}, category: 'evm',
+     def: {es: 'EV / AC. CPI > 1 = bajo presupuesto. CPI < 1 = sobrecosto.', en: 'EV / AC. CPI > 1 = under budget. CPI < 1 = over budget.'}},
+    {term: {es: 'Schedule Performance Index (SPI)', en: 'Schedule Performance Index (SPI)'}, category: 'evm',
+     def: {es: 'EV / PV. SPI > 1 = adelantado. SPI < 1 = retrasado.', en: 'EV / PV. SPI > 1 = ahead of schedule. SPI < 1 = behind schedule.'}},
+    {term: {es: 'Cost Variance (CV)', en: 'Cost Variance (CV)'}, category: 'evm',
+     def: {es: 'EV - AC. Positivo = bajo presupuesto. Negativo = sobrecosto.', en: 'EV - AC. Positive = under budget. Negative = over budget.'}},
+    {term: {es: 'Schedule Variance (SV)', en: 'Schedule Variance (SV)'}, category: 'evm',
+     def: {es: 'EV - PV. Positivo = adelantado. Negativo = retrasado.', en: 'EV - PV. Positive = ahead of schedule. Negative = behind schedule.'}},
+    {term: {es: 'To-Complete Performance Index (TCPI)', en: 'To-Complete Performance Index (TCPI)'}, category: 'evm',
+     def: {es: 'Eficiencia necesaria para terminar el proyecto con el dinero restante. TCPI = (BAC - EV) / (BAC - AC).', en: 'Efficiency required to finish the project with remaining money. TCPI = (BAC - EV) / (BAC - AC).'}},
+    {term: {es: 'Critical Path', en: 'Critical Path'}, category: 'evm',
+     def: {es: 'La secuencia más larga de actividades dependientes. Determina la duración mínima del proyecto.', en: 'The longest sequence of dependent activities. Determines the minimum project duration.'}},
+    {term: {es: 'Work Breakdown Structure (WBS)', en: 'Work Breakdown Structure (WBS)'}, category: 'evm',
+     def: {es: 'Descomposición jerárquica del trabajo total del equipo en paquetes de trabajo manejables.', en: 'Hierarchical decomposition of the total team work into manageable work packages.'}},
+    {term: {es: 'Risk Register', en: 'Risk Register'}, category: 'evm',
+     def: {es: 'Documento donde se registran los riesgos identificados, su análisis y respuestas.', en: 'Document where identified risks, their analysis, and responses are recorded.'}},
+    {term: {es: 'RACI Matrix', en: 'RACI Matrix'}, category: 'evm',
+     def: {es: 'Matriz de responsabilidad: Responsible, Accountable, Consulted, Informed.', en: 'Responsibility matrix: Responsible, Accountable, Consulted, Informed.'}},
+  ];
+
+  global.GLOSSARY = TERMS;
+})(window);

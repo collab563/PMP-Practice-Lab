@@ -1,0 +1,31 @@
+/* ==========================================================
+   PMP Practice Lab — Themes
+   (Dark mode is defined in main.css; this file holds extras)
+   ========================================================== */
+
+/* Theme: high-contrast (accessibility) */
+[data-theme="hc"] {
+  --bg:        #FFFFFF;
+  --bg-elev:   #FFFFFF;
+  --bg-soft:   #F2F4F7;
+  --fg:        #000000;
+  --fg-soft:   #1A1A1A;
+  --fg-mute:   #333333;
+  --border:    #000000;
+  --accent:    #003366;
+  --accent-2:  #002244;
+}
+
+/* Theme: navy (default-style) */
+[data-theme="navy"] {
+  --bg:        #0A2540;
+  --bg-elev:   #102A43;
+  --bg-soft:   #1F4E79;
+  --fg:        #FFFFFF;
+  --fg-soft:   #D9E2EC;
+  --fg-mute:   #9FB3C8;
+  --border:    #334E68;
+  --accent:    #4FB3D9;
+  --accent-2:  #2E86AB;
+}
+[data-theme="navy"] .topbar { background: #061B30; }
